@@ -1,12 +1,15 @@
 import type { Endpoint } from "./api";
 
-/** The public gno.land mainnet Tendermint2 RPC; it sends `Access-Control-Allow-Origin: *`. */
-export const PUBLIC_RPC = "https://rpc.gno.land";
-/** The official tx-indexer (GraphQL); also CORS-open. */
-export const PUBLIC_INDEXER = "https://indexer.gno.land";
-export const INDEXER_GRAPHQL = "https://indexer.gno.land/graphql/query";
+/** Pathrock's gno.land mainnet archive RPC (full state history); it sends `Access-Control-Allow-Origin: *`. */
+export const PUBLIC_RPC = "https://gnoland.archive.pathrocknetwork.org";
+export const PUBLIC_RPC_WS = "wss://gnoland.archive.pathrocknetwork.org/websocket";
+/** The gno.land public RPC, pruned below ~240,000; kept as a failover. */
+export const GNO_RPC = "https://rpc.gno.land";
+/** Pathrock's tx-indexer (GraphQL); also CORS-open. */
+export const PUBLIC_INDEXER = "https://indexer.gnoland.pathrocknetwork.org";
+export const INDEXER_GRAPHQL = "https://indexer.gnoland.pathrocknetwork.org/graphql/query";
 /** Endpoints verified to allow browser requests (CORS `*`). */
-const CORS_OPEN = [PUBLIC_RPC, PUBLIC_INDEXER];
+const CORS_OPEN = [PUBLIC_RPC, GNO_RPC, PUBLIC_INDEXER, "https://indexer.gno.land"];
 export const isCorsOpen = (url: string) => CORS_OPEN.includes(url.replace(/\/+$/, "").toLowerCase());
 
 export const host = (url: string) => { try { return new URL(url).host; } catch { return url; } };

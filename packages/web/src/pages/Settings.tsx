@@ -121,7 +121,7 @@ export function Settings({ d, theme, onTheme }: { d: Dashboard; theme: Theme; on
     <Panel name="lock" title="Security / Access" description="Access and connection information.">
       <div className="ste-security-row"><Icon name="code" /><strong>API mode</strong><p>Every explorer endpoint is a public, read-only GET.</p><Badge tone="ok">Read only</Badge></div>
       <div className="ste-security-row"><Icon name="shield" /><strong>CORS</strong><p>The explorer API serves same-origin browser requests.</p><Badge tone="warn">Same origin</Badge></div>
-      <div className="ste-security-row"><Icon name="wifi" /><strong>Browser RPC</strong><p>The RPC Console posts straight to the endpoint; {(cfg?.rpc ?? []).filter(isCorsOpen).length ? "rpc.gno.land allows any origin" : "the endpoint must allow CORS"}.</p><Badge tone="ok">Direct</Badge></div>
+      <div className="ste-security-row"><Icon name="wifi" /><strong>Browser RPC</strong><p>The RPC Console posts straight to the endpoint; {(cfg?.rpc ?? []).filter(isCorsOpen).length ? "the configured public endpoints allow any origin" : "the endpoint must allow CORS"}.</p><Badge tone="ok">Direct</Badge></div>
       <div className="ste-security-row"><Icon name="file" /><strong>Public configuration</strong><p>The /api/v1/config response.</p>{publicConfig && <Copy value={publicConfig} label="Copy JSON" />}</div>
       <pre className="ste-config-code"><code>{publicConfig || "Loading configuration…"}</code></pre>
     </Panel>

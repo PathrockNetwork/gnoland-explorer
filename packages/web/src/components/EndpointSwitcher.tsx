@@ -1,8 +1,8 @@
 /**
  * Header status indicator for the explorer's upstream data sources.
  *
- * gno.land has one public Tendermint2 RPC (rpc.gno.land) and the official
- * tx-indexer (indexer.gno.land). Neither is ours to switch, so this is a
+ * The explorer reads Pathrock's archive Tendermint2 RPC (rpc.gno.land as
+ * failover) and Pathrock's tx-indexer. They are set server-side, so this is a
  * read-only health readout: the server probes both, and the dropdown shows
  * what each answered plus the API's own RPC client state.
  */

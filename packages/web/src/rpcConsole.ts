@@ -6,7 +6,7 @@
  * presets encode the query string for the user and the response view decodes
  * `ResponseBase.Data`. Broadcast methods are deliberately absent.
  */
-import { PUBLIC_RPC } from "./networkExplorer";
+import { GNO_RPC, PUBLIC_RPC } from "./networkExplorer";
 import type { RpcParams } from "./nodeRpc";
 
 export type ParamKind = "height" | "int" | "text" | "hash" | "address" | "pkgpath";
@@ -26,7 +26,7 @@ export type MethodSpec = {
 };
 
 export { PUBLIC_RPC };
-export const PUBLIC_RPCS = [PUBLIC_RPC];
+export const PUBLIC_RPCS = [PUBLIC_RPC, GNO_RPC];
 
 /** UTF-8 string → standard base64. */
 export function toBase64(text: string): string {
@@ -85,7 +85,7 @@ export const RPC_METHODS: MethodSpec[] = [
   { id: "balances", group: "Accounts (ABCI)", method: "abci_query", description: "bank/balances/<addr> · coin balances", params: [addr, height()], build: v => abci(`bank/balances/${v.address}`, "", v.height), note: "Returns a JSON string like \"936611810ugnot\" (1 GNOT = 1,000,000 ugnot); empty for an unknown address." },
   { id: "account", group: "Accounts (ABCI)", method: "abci_query", description: "auth/accounts/<addr> · account number, sequence, public key", params: [addr, height()], build: v => abci(`auth/accounts/${v.address}`, "", v.height), note: "null when the account has never received coins or signed." },
   { id: "gasprice", group: "Accounts (ABCI)", method: "abci_query", description: "auth/gasprice · current minimum gas price", params: [], build: () => abci("auth/gasprice") },
-  { id: "abci_query", group: "Raw ABCI", method: "abci_query", description: "Any ABCI path with a UTF-8 query string (encoded for you)", params: [{ key: "path", label: "path", kind: "text", default: "params/vm:p:storage_price", placeholder: "vm/qrender" }, { key: "data", label: "data", kind: "text", optional: true, placeholder: "query text, e.g. gno.land/r/sys/users:", hint: "plain text · sent as base64" }, height()], build: v => abci(v.path, v.data ?? "", v.height), note: "State on rpc.gno.land is pruned: queries at heights below roughly 240,000 fail." },
+  { id: "abci_query", group: "Raw ABCI", method: "abci_query", description: "Any ABCI path with a UTF-8 query string (encoded for you)", params: [{ key: "path", label: "path", kind: "text", default: "params/vm:p:storage_price", placeholder: "vm/qrender" }, { key: "data", label: "data", kind: "text", optional: true, placeholder: "query text, e.g. gno.land/r/sys/users:", hint: "plain text · sent as base64" }, height()], build: v => abci(v.path, v.data ?? "", v.height), note: "The Pathrock archive answers at every height; rpc.gno.land prunes state, so queries there below roughly 240,000 fail." },
 ];
 
 export const POPULAR_METHODS = ["status", "block", "block_results", "commit", "validators", "tx", "qrender", "qeval", "balances"];
