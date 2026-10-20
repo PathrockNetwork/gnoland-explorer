@@ -14,6 +14,18 @@ The EVM layer of the Monad explorer is replaced by the Tendermint2 RPC and the o
 [tx-indexer](https://github.com/gnolang/tx-indexer); chain reference notes are in
 [`docs/gnoland-context.md`](docs/gnoland-context.md).
 
+## Endpoints
+Pathrock Network gno.land public infrastructure, set in `.env`:
+
+| Service | URL |
+|---------|-----|
+| Archive RPC (`RPC_URLS`, first) | `https://gnoland.archive.pathrocknetwork.org` |
+| Archive WebSocket | `wss://gnoland.archive.pathrocknetwork.org/websocket` |
+| Transaction indexer (`TX_INDEXER_URL`) | `https://indexer.gnoland.pathrocknetwork.org/graphql/query` |
+
+The archive keeps state for every height. `https://rpc.gno.land` comes second in `RPC_URLS` as a
+failover; it prunes state below about height 240,000.
+
 ## Stack
 - TypeScript (Node 20+, ESM), pnpm workspaces
 - PostgreSQL 16+
@@ -31,9 +43,9 @@ The EVM layer of the Monad explorer is replaced by the Tendermint2 RPC and the o
 
 ## How data flows
 - **Two sources.** Block headers and decoded transactions (messages, events, storage deposits)
-  come from the tx-indexer at `indexer.gno.land`, 2,000 blocks per query. Commit signatures,
-  validator sets and live state (balances, realm renders, source files, function signatures)
-  come from the Tendermint2 RPC at `rpc.gno.land` through ABCI queries.
+  come from the tx-indexer, 2,000 blocks per query. Commit signatures, validator sets and live
+  state (balances, realm renders, source files, function signatures) come from the Tendermint2
+  RPC through ABCI queries. Both run on Pathrock Network infrastructure (below).
 - **Full history.** gno.land is quiet (a block every ~3.5s, a few thousand transactions a day),
   so everything is kept from genesis (height 0 holds the 96 genesis transactions). A first sync
   of ~1M blocks took about 8 minutes.

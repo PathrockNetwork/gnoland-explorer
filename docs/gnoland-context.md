@@ -7,6 +7,9 @@ Node software: `build_version v1.5.1` (block header `version` reports `v1.0.0-rc
 
 | What | URL | Notes |
 |---|---|---|
+| **Pathrock archive RPC** (explorer primary) | `https://gnoland.archive.pathrocknetwork.org` | TM2 JSON-RPC, batches, CORS `*`. Archive node (moniker `PathrockNetwork-Mainnet-Archive`): `abci_query` works at every height. No `tx_search`/`block_search`. |
+| **Pathrock archive WS** | `wss://gnoland.archive.pathrocknetwork.org/websocket` | Request/response JSON-RPC over WebSocket. |
+| **Pathrock tx-indexer** (explorer source) | `https://indexer.gnoland.pathrocknetwork.org/graphql/query` | Same gnolang/tx-indexer GraphQL schema as the official one, genesis included; CORS `*`. |
 | TM2 JSON-RPC (HTTP) | `https://rpc.gno.land` (`:443`) | GET URI style + POST JSON-RPC. CORS `*`. |
 | TM2 JSON-RPC (WS) | `wss://rpc.gno.land/websocket` | Same request/response methods only. **No `subscribe`** (returns `-32601 Method not found`). |
 | tx-indexer GraphQL | `https://indexer.gno.land/graphql/query` | POST. CORS `*`. Playground UI at `https://indexer.gno.land/graphql`. |
