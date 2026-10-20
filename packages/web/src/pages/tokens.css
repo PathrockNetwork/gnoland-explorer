@@ -1,0 +1,36 @@
+/* Tokens page: list + token detail. Builds on the txe-* classes from transactions.css. */
+.tok-page .txe-kpis .tok-stat { min-height: 132px; }
+.tok-stat.token .txe-stat-label svg { color: var(--brand2); }
+.tok-table { min-width: 1100px; }
+.txe-table th.num, .txe-table td.num, .txe-mini-table th.num, .txe-mini-table td.num { text-align: right; }
+.tok-name { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
+.tok-name > span:last-child { display: flex; flex-direction: column; min-width: 0; }
+.tok-name b { color: var(--tx); font-weight: 600; }
+.tok-name small { margin-top: 0 !important; max-width: 220px; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter Variable', sans-serif; }
+.tok-name:hover b { color: var(--brand2); }
+.tok-badge { display: inline-grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--brandSoft); color: var(--brand2); border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--line)); font: 700 9px/1 'Inter Variable', sans-serif; letter-spacing: .02em; }
+.tok-std { margin-right: 8px; color: var(--tx2); font-size: 12px; }
+.tok-title { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tok-title small { color: var(--tx3); font: 500 13px/1 'JetBrains Mono Variable', monospace; }
+.tok-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.tok-chart, .tok-receivers { display: flex; flex-direction: column; min-width: 0; }
+.tok-chart > header, .tok-receivers > header, .tok-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 20px 12px; border-bottom: 1px solid var(--line); }
+.tok-chart > header span, .tok-receivers > header span, .tok-section-head span { color: var(--tx3); font-size: 12px; }
+.tok-chart-body { position: relative; padding: 24px 20px 20px; }
+.tok-axis { position: absolute; top: 6px; left: 20px; color: var(--tx3); font: 400 11px/1 'JetBrains Mono Variable', monospace; }
+.tok-pad { padding: 16px 20px; }
+.tok-receivers ol { list-style: none; margin: 0; padding: 8px 20px; display: grid; gap: 2px; counter-reset: r; }
+.tok-receivers li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font: 400 12px/1.4 'JetBrains Mono Variable', monospace; color: var(--tx2); }
+.tok-receivers li:last-child { border-bottom: 0; }
+.tok-receivers li > span { color: var(--tx); text-align: right; }
+.tok-receivers li i { grid-column: 1 / -1; display: block; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.tok-receivers li i b { display: block; height: 100%; background: var(--brand); }
+.tok-receivers .txe-funds-note { margin: 0; }
+.tok-page .txe-funds-list b a { color: inherit; }
+@media (max-width: 1100px) { .tok-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 620px) {
+  .tok-chart > header, .tok-receivers > header, .tok-section-head { padding: 14px 16px 10px; }
+  .tok-chart-body { padding: 22px 16px 16px; }
+  .tok-receivers ol, .tok-pad { padding-inline: 16px; }
+  .tok-axis { left: 16px; }
+}
