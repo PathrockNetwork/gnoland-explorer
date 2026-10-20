@@ -49,9 +49,9 @@ export function redactUrl(url: string): string {
   }
 }
 
-/** Comma-separated RPC_URLS, falling back to the public gno.land mainnet RPC. */
+/** Comma-separated RPC_URLS, falling back to the Pathrock archive RPC, then the public gno.land RPC. */
 export function rpcUrlsFromEnv(): string[] {
-  const raw = process.env.RPC_URLS ?? "https://rpc.gno.land";
+  const raw = process.env.RPC_URLS ?? "https://gnoland.archive.pathrocknetwork.org,https://rpc.gno.land";
   return raw
     .split(",")
     .map((s) => s.trim())

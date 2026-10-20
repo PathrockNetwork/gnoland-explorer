@@ -10,7 +10,7 @@ export const RESULT_CAP = 10_000;
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
 export function indexerUrlFromEnv(): string {
-  return process.env.TX_INDEXER_URL ?? "https://indexer.gno.land/graphql/query";
+  return process.env.TX_INDEXER_URL ?? "https://indexer.gnoland.pathrocknetwork.org/graphql/query";
 }
 
 /** Message value fields requested from the indexer, shared by every query. */
