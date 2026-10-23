@@ -5,7 +5,9 @@
 Indexes gno.land from genesis into Postgres and serves it through a REST API and a React
 explorer with the same design as [monad-explorer](../monad-explorer) and
 [secretnetwork-explorer](../secretnetwork-explorer) (layout, components and CSS ported; gno.land
-ink-and-green palette). Pages: Overview, Validators, Blocks, Transactions (tx detail with decoded
+ink-and-green palette). The original explorer layout and typography are retained, with
+gno.land colors, light/dark themes, and the gnome mark from its public assets. Light mode is
+the default; saved theme preferences remain available. Pages: Overview, Validators, Blocks, Transactions (tx detail with decoded
 messages, events and token transfers; account pages with balances, GRC20 holdings and deployed
 packages), Realms (every package with its source, exported functions and live `Render` output),
 Tokens, Storage, GovDAO, Analytics, Network, RPC Console, API Reference and Settings.

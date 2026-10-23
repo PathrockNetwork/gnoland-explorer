@@ -1,79 +1,73 @@
-/**
- * Shared design tokens for the gno.land explorer — the Secret/Monad
- * explorers' token set with a gno.land palette: neutral ink-and-paper
- * surfaces (gno.land's own monochrome look) and a deep green accent.
- * Both themes are declared here; `data-theme` on the app root selects one.
- */
+/** Shared gno.land color tokens. Light is the default; saved preferences
+ * select the corresponding palette on the application root. */
 
-:root {
-  --canvas: #0b0c0c;
-  --panel: #121414;
-  --panel2: #191c1b;
-  --line: #262a29;
-  --line2: #3c4240;
-  --tx: #ffffff;
-  --tx2: #c4cac8;
-  --tx3: #969e9b;
-  --accent: #1f7a5c; /* white text on it: 5.3:1 */
-  --onAccent: #ffffff;
-  --brand: #4fc79c;
-  --brand2: #86e0bf;
-  --brandSoft: rgba(79, 199, 156, 0.12);
-  --peach: #dff5ec;
-  /* Kept from the Secret token set for shared components; on gno.land these
-     are neutral green tints (nothing here is sealed). */
-  --sealed: #1d2b26;
-  --sealedTx: #c7eedd;
-  --cipher: rgba(79, 199, 156, 0.05);
-  --ok: #61d6a3;
-  --okSoft: rgba(97, 214, 163, 0.1);
-  --warn: #f2ce71;
-  --warnSoft: rgba(242, 206, 113, 0.12);
-  --bad: #ff8191;
-  --badSoft: rgba(255, 129, 145, 0.12);
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
-  --skel: #1d201f;
-  --grid: #212524;
+:root, [data-theme="light"] {
+  --canvas: #fff;
+  --panel: #fff;
+  --panel2: #f0f0f0;
+  --panel3: #e2e2e2;
+  --line: #e2e2e2;
+  --line2: #bdbdbd;
+  --tx: #090909;
+  --tx2: #585858;
+  --tx3: #696969;
+  --accent: #226c57;
+  --onAccent: #fff;
+  --brand: #226c57;
+  --brand2: #144134;
+  --brandSoft: #e7efed;
+  --peach: #e7efed;
+  --sealed: #e7efed;
+  --sealedTx: #144134;
+  --cipher: #f6f8f7;
+  --ok: #226c57;
+  --okSoft: #e7efed;
+  --warn: #7b4807;
+  --warnSoft: #fff7eb;
+  --bad: #a03d29;
+  --badSoft: #fff6f6;
+  --shadow: none;
+  --skel: #f0f0f0;
+  --grid: #e2e2e2;
 }
-
-[data-theme="light"] {
-  --canvas: #f6f7f6;
-  --panel: #ffffff;
-  --panel2: #f0f2f1;
-  --line: #dfe3e1;
-  --line2: #c2c9c6;
-  --tx: #0f1211;
-  --tx2: #3f4744;
-  --tx3: #636c69;
-  --accent: #1f7a5c;
-  --onAccent: #ffffff;
-  --brand: #19694f;
-  --brand2: #135940;
-  --brandSoft: rgba(31, 122, 92, 0.09);
-  --peach: #e3f3ec;
-  --sealed: #e1f0e9;
-  --sealedTx: #1d5c45;
-  --cipher: rgba(31, 122, 92, 0.045);
-  --ok: #147a4e;
-  --okSoft: rgba(20, 122, 78, 0.09);
-  --warn: #946000;
-  --warnSoft: rgba(148, 96, 0, 0.1);
-  --bad: #bd2646;
-  --badSoft: rgba(189, 38, 70, 0.08);
-  --shadow: 0 2px 8px rgba(10, 30, 20, 0.05);
-  --skel: #e8ecea;
-  --grid: #e8ecea;
+[data-theme="dark"] {
+  --canvas: #090909;
+  --panel: #090909;
+  --panel2: #141414;
+  --panel3: #292929;
+  --line: #292929;
+  --line2: #585858;
+  --tx: #fff;
+  --tx2: #bdbdbd;
+  --tx3: #999;
+  --accent: #226c57;
+  --onAccent: #fff;
+  --brand: #60ab96;
+  --brand2: #8fc7b7;
+  --brandSoft: #112a22;
+  --peach: #e7efed;
+  --sealed: #112a22;
+  --sealedTx: #8fc7b7;
+  --cipher: #111a17;
+  --ok: #60ab96;
+  --okSoft: #112a22;
+  --warn: #facc32;
+  --warnSoft: #362600;
+  --bad: #eb6c49;
+  --badSoft: #3d1b18;
+  --shadow: none;
+  --skel: #1f1f1f;
+  --grid: #292929;
 }
-
 html {
-  color-scheme: dark;
+  color-scheme: light;
   /* Horizontal panning belongs to the elements that need it (mobile nav,
      wide tables), never the page itself. Both html and body: overflow-x on
      body alone still leaves the viewport scrollable via html. */
   overflow-x: hidden;
 }
-html:has([data-theme="light"]) {
-  color-scheme: light;
+html:has([data-theme="dark"]) {
+  color-scheme: dark;
 }
 
 body {

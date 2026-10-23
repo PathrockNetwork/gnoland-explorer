@@ -107,8 +107,8 @@ export default function App() {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
       const stored = localStorage.getItem("gnoland-explorer-theme");
-      return stored === "dark" || stored === "light" || stored === "system" ? stored : "dark";
-    } catch { return "dark"; }
+      return stored === "dark" || stored === "light" || stored === "system" ? stored : "light";
+    } catch { return "light"; }
   });
   const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() =>
     window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark",
@@ -128,6 +128,7 @@ export default function App() {
   // the deployed bundle name and offer a reload when they diverge.
   useEffect(() => {
     const mine = document.querySelector('script[src*="assets/index-"]')?.getAttribute("src") ?? "";
+    if (!mine) return; // Development has no deployed bundle to compare.
     const check = () =>
       fetch("/api/v1/version")
         .then((r) => r.json())
@@ -509,6 +510,7 @@ function Sidebar({
             key={n.id}
             className={page === n.id ? "active" : undefined}
             href={`#/${n.id}`}
+            aria-current={page === n.id ? "page" : undefined}
             onClick={(e) => {
               e.preventDefault();
               go(n.id);
@@ -549,18 +551,11 @@ function Sidebar({
   );
 }
 
-/**
- * Explorer lockup: a generic gnome-hat mark plus the chain name in the UI
- * typeface — deliberately not the gno.land project's logo artwork.
- */
+/** gno.land's gnome mark in the explorer's original wordmark slot. */
 function GnoWordmark() {
   return (
     <span className="gno-wordmark" role="img" aria-label="gno.land">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16 3.5 25.5 24H6.5z" />
-        <path d="M4.5 24h23" />
-        <circle cx="16" cy="27" r="2.4" />
-      </svg>
+      <img src="/gno-gnome.svg" width="38" height="38" alt="" aria-hidden="true" />
       <span>gno.land</span>
     </span>
   );
